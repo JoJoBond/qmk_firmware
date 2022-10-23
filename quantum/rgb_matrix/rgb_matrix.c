@@ -122,7 +122,7 @@ last_hit_t g_last_hit_tracker;
 static bool            suspend_state     = false;
 static uint8_t         rgb_last_enable   = UINT8_MAX;
 static uint8_t         rgb_last_effect   = UINT8_MAX;
-static effect_params_t rgb_effect_params = {0, LED_FLAG_ALL, false};
+static effect_params_t rgb_effect_params = {0, LED_FLAG_KEYLIGHT, false};
 static rgb_task_states rgb_task_state    = SYNCING;
 #if RGB_DISABLE_TIMEOUT > 0
 static uint32_t rgb_anykey_timer;
@@ -149,7 +149,7 @@ void eeconfig_update_rgb_matrix_default(void) {
     rgb_matrix_config.mode   = RGB_MATRIX_STARTUP_MODE;
     rgb_matrix_config.hsv    = (HSV){RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL};
     rgb_matrix_config.speed  = RGB_MATRIX_STARTUP_SPD;
-    rgb_matrix_config.flags  = LED_FLAG_ALL;
+    rgb_matrix_config.flags  = LED_FLAG_KEYLIGHT;
     eeconfig_flush_rgb_matrix(true);
 }
 
