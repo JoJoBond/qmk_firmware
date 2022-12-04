@@ -1,6 +1,6 @@
 /* Copyright 2020 Adam Honse <calcprogrammer1@gmail.com>
  * Copyright 2020 Dimitris Mantzouranis <d3xter93@gmail.com>
- * Copyright 2021 Harrison Chan (Xelus)
+ * Copyright 2022 Harrison Chan (Xelus)
  * Copyright 2022 Pablo Ramirez <jp.ramangulo@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,12 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+/* USB Device descriptor parameter */
+#define PRODUCT_ID      0xFE08
+#define DEVICE_VER      0x0001
 
-#include "quantum.h"
-
-#if defined(KEYBOARD_keychron_k5_rgb_se_ansi)
-    #include "ansi.h"
-#elif defined(KEYBOARD_keychron_k5_rgb_se_optical_ansi)
-    #include "optical_ansi.h"
-#endif
+/* RGB LED Config */
+#define DRIVER_LED_TOTAL (108)
