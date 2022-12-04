@@ -115,7 +115,7 @@ void rgb_ch_ctrl(PWMConfig *cfg) {
                 cfg->channels[1].mode = PWM_OUTPUT_ACTIVE_LOW;
                 chan_col_order[i] = 1;
                 break;
-            
+
             case B10:
                 cfg->channels[2].pfpamsk = 1;
             case A2:
@@ -300,23 +300,26 @@ void update_pwm_channels(PWMDriver *pwmp) {
             matrix_scan_keys(raw_matrix,col_idx);
         #endif
         uint8_t led_index = g_led_config.matrix_co[row_idx][col_idx];
-        // Check if we need to enable RGB output
-        if (led_state[led_index].b != 0) enable_pwm |= true;
-        if (led_state[led_index].g != 0) enable_pwm |= true;
-        if (led_state[led_index].r != 0) enable_pwm |= true;
-        // Update matching RGB channel PWM configuration
-        switch(current_row % LED_MATRIX_ROW_CHANNELS) {
-        case 0:
-                if(enable_pwm) pwmEnableChannelI(pwmp,chan_col_order[col_idx],led_state[led_index].b);
-            break;
-        case 1:
-                if(enable_pwm) pwmEnableChannelI(pwmp,chan_col_order[col_idx],led_state[led_index].g);
-            break;
-        case 2:
-                if(enable_pwm) pwmEnableChannelI(pwmp,chan_col_order[col_idx],led_state[led_index].r);
-            break;
-        default:
-            ;
+        // Check if led index is within array bounds
+        if (led_index < DRIVER_LED_TOTAL) {
+            // Check if we need to enable RGB output
+            if (led_state[led_index].b != 0) enable_pwm |= true;
+            if (led_state[led_index].g != 0) enable_pwm |= true;
+            if (led_state[led_index].r != 0) enable_pwm |= true;
+            // Update matching RGB channel PWM configuration
+            switch(current_row % LED_MATRIX_ROW_CHANNELS) {
+            case 0:
+                    if(enable_pwm) pwmEnableChannelI(pwmp,chan_col_order[col_idx],led_state[led_index].b);
+                break;
+            case 1:
+                    if(enable_pwm) pwmEnableChannelI(pwmp,chan_col_order[col_idx],led_state[led_index].g);
+                break;
+            case 2:
+                    if(enable_pwm) pwmEnableChannelI(pwmp,chan_col_order[col_idx],led_state[led_index].r);
+                break;
+            default:
+                ;
+            }
         }
     }
 }
