@@ -18,7 +18,7 @@
 
 #include "quantum.h"
 
-enum K6_keycodes {
+enum K5_keycodes {
     BT_PROFILE1 = SAFE_RANGE,
     BT_PROFILE2,
     BT_PROFILE3,

@@ -30,5 +30,7 @@ DIP_SWITCH_ENABLE = yes
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = SN32F24xB
 
+VIA_ENABLE = no
+
 # Build ansi by default
 DEFAULT_FOLDER = keychron/k5/rgb/ansi
